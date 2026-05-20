@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard IoT</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: white;
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h1>Dashboard IoT con Python y GitHub Pages</h1>
+
+        <h2>
+            Temperatura:
+            <span id="temperatura">--</span> °C
+        </h2>
+
+        <h2>
+            Humedad:
+            <span id="humedad">--</span> %
+        </h2>
+
+        <p>
+            Última actualización:
+            <span id="fecha">--</span>
+        </p>
+
+    </div>
+
+    <script>
+
+        fetch("datos.json")
+            .then(response => response.json())
+            .then(datos => {
+
+                document.getElementById("temperatura").textContent =
+                    datos.temperatura;
+
+                document.getElementById("humedad").textContent =
+                    datos.humedad;
+
+                document.getElementById("fecha").textContent =
+                    datos.fecha_hora;
+
+            })
+            .catch(error => {
+
+                console.log("Error al cargar JSON:", error);
+
+            });
+
+    </script>
+
+</body>
+
+</html>
